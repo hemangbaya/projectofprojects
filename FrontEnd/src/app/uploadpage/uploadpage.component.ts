@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService} from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-uploadpage',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ds:DataService, private router:Router) { }
   ngOnInit(): void {
+    this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
+      if (response.status != "ok") {
+        this.router.navigate(['/signin'], { queryParams: { message: 'signinfirst'}});
+      }
+    });
     
   }
 

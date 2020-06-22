@@ -84,13 +84,14 @@ app.post('/login-check', bodyParser.json(), (req, res) => {
     collection.find({accessString: req.body.accessString}).toArray((err,docs)=>{
         if(!err && docs.length>0)
         {
-            res.send({status:"ok", data:docs});
+            res.send({status:"ok", data:{name: docs[0].name, email: docs[0].email} });
         }
         else {
             res.send({status:"failed", data:"some error occured"});
         }
     })
 })
+
 app.listen(3000, () => {
     console.log("on 3000 currently");
 })

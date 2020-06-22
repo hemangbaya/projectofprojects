@@ -20,19 +20,10 @@ export class SignupComponent implements OnInit {
     // this.ds.test = 2;
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
       if (response.status == "ok") {
-        this.ds.loginstat = true;
-      }
-      else {
-        this.ds.loginstat = false;
-      }
-    });
-    setTimeout(() => {
-      if (this.ds.loginstat == true) {
         alert("Please logout of the current account to make a new account.");
         this.router.navigate(['/']);
       }
-    }, 1000);
-    
+    });
   }
 
   signUpAction() {
@@ -76,7 +67,7 @@ export class SignupComponent implements OnInit {
         {name:this.nameofuser.toLowerCase(), email:this.emailofuser.toLowerCase(), password: this.passwordofuser})
         .subscribe((response) => {
           if (response.status == "ok") {
-            this.router.navigate(['/signin'], { queryParams: { accountmade: 'true'}});
+            this.router.navigate(['/signin'], { queryParams: { message: 'accountmade'}});
           }
           else {
             document.getElementById('alreadyexists').innerHTML = 'Account already exists or some error occured.'

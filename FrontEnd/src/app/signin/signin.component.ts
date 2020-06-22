@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 // import { signedInStatus } from '../app.component';
 // import { LogoutserviceService } from '../logoutservice.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -12,26 +13,31 @@ import { DataService } from '../data.service';
 export class SigninComponent implements OnInit {
   emailofuser;
   passwordofuser;
-  constructor(private router:Router, private ds:DataService) { }
-
+  constructor(private router:Router, private ds:DataService, private route: ActivatedRoute) { }
+  message:string;
   ngOnInit(): void {
     // alert(this.ds.test);
     // alert(JSON.parse(localStorage.getItem('accessString')));
-    
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
       if (response.status == "ok") {
-        this.ds.loginstat = true;
-      }
-      else {
-        this.ds.loginstat = false;
-      }
-    });
-    setTimeout(() => {
-      if (this.ds.loginstat == true) {
         alert("You are already logged in!");
         this.router.navigate(['/']);
       }
-    }, 1000);
+    });
+    this.route.queryParams.subscribe((par) => {
+      this.message = par.message;
+      if (this.message == undefined) {
+        this.message ="";
+      }
+      if(this.message == "signinfirst") {
+        this.message = "Please sign in first";
+      }
+      if(this.message == "accountmade") {
+        this.message = "Account created!"
+      }
+      document.getElementById('fromwhere').innerHTML = this.message;
+    })
+    
   }
 
     signInAction() {

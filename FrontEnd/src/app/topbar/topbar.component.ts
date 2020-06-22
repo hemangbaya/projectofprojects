@@ -16,29 +16,18 @@ export class TopbarComponent implements OnInit {
  name;
   ngOnInit(): void {
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
+      var x = document.getElementById("signinsignup");
+      var y = document.getElementById("profilepicturelogoutbutton");
       if (response.status == "ok") {
-        this.ds.loginstat = true;
-        this.name = response.data[0].name;
+        this.name = response.data.name;
+        x.style.display = "none";
+        y.style.display = "block";
       }
       else {
-        this.ds.loginstat = false;
+        x.style.display = "block";
+        y.style.display = "none";
       }
     });
-    setTimeout(() => {
-        var x = document.getElementById("signinsignup");
-        var y = document.getElementById("profilepicturelogoutbutton");
-        // alert(x);
-        // alert(y);
-        if (this.ds.loginstat == true) {
-          x.style.display = "none";
-          y.style.display = "block";
-        }
-       else {
-          x.style.display = "block";
-          y.style.display = "none";
-        }
-      
-    }, 100);
 }
 
   // topbarlogoutcommand:boolean = false;

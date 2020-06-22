@@ -19,5 +19,4 @@ export class DataService {
   check(data):any {
     return this.http.post(this.baseURL + "/login-check", data);
   }
-  loginstat:boolean;
 }
