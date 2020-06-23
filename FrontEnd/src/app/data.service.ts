@@ -19,4 +19,8 @@ export class DataService {
   check(data):any {
     return this.http.post(this.baseURL + "/login-check", data);
   }
+
+  addproject(data):any {
+    return this.http.post(this.baseURL + "/add-project", data);
+  }
 }

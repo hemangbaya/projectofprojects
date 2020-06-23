@@ -8,7 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./uploadpage.component.css']
 })
 export class UploadpageComponent implements OnInit {
-
+  projname;
+  projdescription;
+  projgithublink;
+  projhowtosetup;
+  projuploader:Array<File>;
+  projtags;
   constructor(private ds:DataService, private router:Router) { }
   ngOnInit(): void {
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
@@ -19,4 +24,120 @@ export class UploadpageComponent implements OnInit {
     
   }
 
+  getimages(eve) {
+    this.projuploader=eve.target.files;
+  }
+  sendprojdetails() {
+    var desc = document.getElementById('projectdescription') as any;
+    var hts = document.getElementById('projecthowtosetup') as any;
+    var tgs = document.getElementById('projecttags') as any;
+    this.projdescription = desc.value;
+    this.projhowtosetup = hts.value;
+    this.projtags = tgs.value;
+
+    document.getElementById('projnamesug').innerHTML = '';
+    document.getElementById('projdescriptionsug').innerHTML = '';
+    document.getElementById('projgithublinksug').innerHTML = '';
+    document.getElementById('projhowtosetupsug').innerHTML = '';
+    document.getElementById('projtagssug').innerHTML = '';
+    document.getElementById('projuploadersug').innerHTML = '';
+
+    var formstat = 1;
+    if (this.projname=="" || this.projname==null) {
+      document.getElementById("projnamesug").innerHTML = 'Enter project name';
+      formstat=0;
+    }
+    if (this.projdescription=="" || this.projdescription==null) {
+      document.getElementById("projdescriptionsug").innerHTML = 'Enter Description';
+      formstat=0;
+    }
+    if (this.projgithublink=="" || this.projgithublink==null) {
+      document.getElementById("projgithublinksug").innerHTML = 'Enter link to project on GitHub';
+      formstat=0;
+    }
+    if (this.projhowtosetup=="" || this.projhowtosetup==null) {
+      document.getElementById("projhowtosetupsug").innerHTML = 'Enter details on how to setup'
+      formstat=0;
+    }
+    if (this.projtags=="" || this.projtags==null) {
+      document.getElementById("projtagssug").innerHTML = 'Enter tags'
+      formstat=0;
+    }
+    if (this.projuploader == undefined) {
+      document.getElementById('projuploadersug').innerHTML = 'Select Min 1 image and max 5 images';
+      formstat=0;
+    }
+    else {
+      if (this.projuploader.length<1 || this.projuploader.length>5) {
+        document.getElementById('projuploadersug').innerHTML = 'Select Min 1 image and max 5 images';
+        formstat=0;
+      }
+    }
+    if (formstat == 0) {
+      this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
+        if (response.status == "ok") {
+          var projectdetails = new FormData();
+          for (var i=0; i<this.projuploader.length; i++) {
+            projectdetails.append('pro', this.projuploader[i], this.projuploader[i]['name']);
+          }
+          projectdetails.set('man',"asdf");
+          this.ds.addproject(projectdetails).subscribe((data)=>{
+            alert(JSON.stringify(data));
+          })
+        }
+      });
+    }
+
+  }
 }
+    // var details = new FormData();
+    // var nooffiles;
+    // var formstat =1;
+    // 
+    // this.projdescription = document.getElementById('projectdescription').value;
+
+    // if (this.projname=="" || this.projname==null) {
+    //   document.getElementById("projnamesug").innerHTML = 'Enter project name';
+    //   formstat=0;
+    // }
+    // if (this.projdescription=="" || this.projdescription==null) {
+    //   document.getElementById("projdescriptionsug").innerHTML = 'Enter Description';
+    //   formstat=0;
+    // }
+    // if (this.projgithublink=="" || this.projgithublink==null) {
+    //   document.getElementById("projgithublinksug").innerHTML = 'Enter link to project on GitHub';
+    //   formstat=0;
+    // }
+    // if (this.projhowtosetup=="" || this.projhowtosetup==null) {
+    //   document.getElementById("projhowtosetupsug").innerHTML = 'Enter details on how to setup'
+    //   formstat=0;
+    // }
+    // if (this.projtags=="" || this.projtags==null) {
+    //   document.getElementById("projtagssug").innerHTML = 'Enter details on how to setup'
+    //   formstat=0;
+    // }
+    // for(var i=0; i<this.projuploader.length; i++) {
+
+    // }
+
+
+// getProfile(e)
+// {
+//     this.profile=e.target.files[0];
+// }
+// getGallery(e)
+// {
+//   this.gallery=e.target.files;
+// }
+// postData()
+// {
+//   var form = new FormData();
+//   for (var i=0; i<this.gallery.length;i++)
+//   {
+//     form.append("gallery",this.gallery[i], this.gallery[i]['name']);
+//   }
+//   form.set('name', name);
+//   form.set('profile', this.profile);
+  
+//   this.ds.postDataWithImage(form).subscribe((d)=>{alert(JSON.stringify(d))});
+// }

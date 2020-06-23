@@ -1,7 +1,7 @@
 <app-topbar></app-topbar>
 <div style="margin: auto; border: solid black 1px;width: 1000px;">
     <form #f="ngForm">
-        Name: <input type="text" name="inputName"  [(ngModel)]="nameofuser"> <br><div id="namesuggestion"></div>
+        Name: <input type="text" name="inputName"  [(ngModel)]="nameofuser" (change)="profpic($event)"> <br><div id="namesuggestion" ></div>
         Email: <input type="text" name="inputEmail" [(ngModel)]="emailofuser"> <br><div id="emailsuggestion"></div>
         Password: <input type="password" name="inputPassword" [(ngModel)]="passwordofuser"> <br><div id="passwordsuggestion"></div>
         Confirm Password: <input type="password" name="inputPassword" [(ngModel)]="passwordofuserconf"><br><div id="confpasswordsuggestion"></div>
@@ -9,3 +9,5 @@
         <div id="alreadyexists"></div>
     </form>
 </div>
+
+<img src="" alt="Enter name to get your avatar" id="changingimage" />

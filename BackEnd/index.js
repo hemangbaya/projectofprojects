@@ -90,7 +90,12 @@ app.post('/login-check', bodyParser.json(), (req, res) => {
             res.send({status:"failed", data:"some error occured"});
         }
     })
-})
+});
+app.post('/add-project', (req, res) => {
+        
+            res.send({status:"ok", data:"a"});
+        
+});
 
 app.listen(3000, () => {
     console.log("on 3000 currently");

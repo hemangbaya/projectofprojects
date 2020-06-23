@@ -25,40 +25,32 @@ export class SignupComponent implements OnInit {
       }
     });
   }
-
+  imgtext;
   signUpAction() {
     var formStatus:number = 1;
+    document.getElementById('namesuggestion').innerHTML = '';
+    document.getElementById('emailsuggestion').innerHTML = '';
+    document.getElementById('passwordsuggestion').innerHTML = '';
+    document.getElementById('confpasswordsuggestion').innerHTML = '';
 
       if (this.nameofuser == '' || this.nameofuser == null) {
         document.getElementById('namesuggestion').innerHTML = 'Enter Name';
         formStatus = 0;
-      }
-      else {
-        document.getElementById('namesuggestion').innerHTML = '';
       }
 
       if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.emailofuser) || this.emailofuser == null) {
         document.getElementById('emailsuggestion').innerHTML = 'Invalid Email Id';
         formStatus = 0;
       }
-      else {
-        document.getElementById('emailsuggestion').innerHTML = '';
-      }
 
       if (!/^.{6,}$/.test(this.passwordofuser) || this.passwordofuser == null) {
         document.getElementById('passwordsuggestion').innerHTML = 'Password must contain 6 characters';
         formStatus = 0;
       }
-      else {
-        document.getElementById('passwordsuggestion').innerHTML = '';
-      }
 
       if (this.passwordofuserconf != this.passwordofuser || this.passwordofuserconf== null) {
         document.getElementById('confpasswordsuggestion').innerHTML = 'Passwords don\'t match';
         formStatus = 0;
-      }
-      else {
-        document.getElementById('confpasswordsuggestion').innerHTML = '';
       }
     
     document.getElementById('alreadyexists').innerHTML = " ";
@@ -74,6 +66,11 @@ export class SignupComponent implements OnInit {
           }
         });
     }
+  }
+  
+  profpic(eve) {
+    this.imgtext = eve.target.value;
+    document.getElementById("changingimage").setAttribute('src', "https://robohash.org/"+this.imgtext); 
   }
 }
         
