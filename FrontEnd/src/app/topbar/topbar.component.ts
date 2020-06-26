@@ -15,6 +15,10 @@ export class TopbarComponent implements OnInit {
   constructor(private router:Router, private ds:DataService) { }
  name;
   ngOnInit(): void {
+    // localStorage.removeItem("accessString");
+    if (localStorage.getItem("accessString") == undefined) {
+      localStorage.setItem("accessString","a");
+    }
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
       var x = document.getElementById("signinsignup");
       var y = document.getElementById("profilepicturelogoutbutton");

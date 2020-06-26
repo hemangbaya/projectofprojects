@@ -14,11 +14,15 @@ export class UploadpageComponent implements OnInit {
   projhowtosetup;
   projuploader:Array<File>;
   projtags;
+  email;
   constructor(private ds:DataService, private router:Router) { }
   ngOnInit(): void {
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
       if (response.status != "ok") {
         this.router.navigate(['/signin'], { queryParams: { message: 'signinfirst'}});
+      }
+      else {
+        this.email = response.data.email;
       }
     });
     
@@ -43,8 +47,8 @@ export class UploadpageComponent implements OnInit {
     document.getElementById('projuploadersug').innerHTML = '';
 
     var formstat = 1;
-    if (this.projname=="" || this.projname==null) {
-      document.getElementById("projnamesug").innerHTML = 'Enter project name';
+    if (this.projname=="" || this.projname==null || /\s/.test(this.projname)) {
+      document.getElementById("projnamesug").innerHTML = 'Enter valid project name';
       formstat=0;
     }
     if (this.projdescription=="" || this.projdescription==null) {
@@ -73,23 +77,64 @@ export class UploadpageComponent implements OnInit {
         formstat=0;
       }
     }
-    if (formstat == 0) {
-      this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
-        if (response.status == "ok") {
-          var projectdetails = new FormData();
-          for (var i=0; i<this.projuploader.length; i++) {
-            projectdetails.append('pro', this.projuploader[i], this.projuploader[i]['name']);
+    document.getElementById("projectexists").style.display = "none";
+    if (formstat == 1) {
+      // this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
+      //   if (response.status == "ok") {
+        
+          var uploadhelper = new FormData();
+          uploadhelper.set("email", this.email);
+          uploadhelper.set("projname", this.projname);
+          uploadhelper.set("projdescription", this.projdescription);
+          uploadhelper.set("projgithublink", this.projgithublink);
+          uploadhelper.set("projhowtosetup", this.projhowtosetup);
+          uploadhelper.set("projtags", this.projtags);
+          for (var i=0; i<this.projuploader.length;i++) {
+            uploadhelper.append("proj",this.projuploader[i], this.projuploader[i]['name']);
           }
-          projectdetails.set('man',"asdf");
-          this.ds.addproject(projectdetails).subscribe((data)=>{
-            alert(JSON.stringify(data));
-          })
-        }
-      });
+          
+      //     alert("asdf");
+      //     this.ds.addproject( uploadhelper).subscribe((data)=>{alert(JSON.stringify(data))});
+          this.ds.projectexistchecker({email:this.email, projname:this.projname}).subscribe((data)=>{
+            if (data.status=="ok") {
+              this.ds.addproject( uploadhelper).subscribe((data)=>{  });
+              this.router.navigate(['/profilepage'], { queryParams: { message: 'me'}});
+            }
+            else {
+              document.getElementById("projectexists").style.display = "block";
+            }
+          });
+      //   }
+      //   else {
+      //     this.router.navigate(['/signin'], { queryParams: { message: 'signinfirst'}});
+      //   }
+      // });
     }
-
   }
 }
+
+// projname;
+//   projdescription;
+//   projgithublink;
+//   projhowtosetup;
+//   projuploader:Array<File>;
+//   projtags;
+         // var projectdetails = new FormData();
+          // for (var i=0; i<this.projuploader.length; i++) {
+          //   projectdetails.append('projectimage', this.projuploader[i], this.projuploader[i]['name']);
+          // }
+          // this.ds.addproject(projectdetails).subscribe((data)=>{
+          //   alert(JSON.stringify(data));
+          // })
+    //       var form = new FormData();
+    // for (var i=0; i<this.projuploader.length;i++)
+    // {
+    //   form.append("projectuploader",this.projuploader[i], this.projuploader[i]['name']);
+    // }
+    
+    // this.ds.addproject(form).subscribe((data)=>{alert(JSON.stringify(data))});
+
+
     // var details = new FormData();
     // var nooffiles;
     // var formstat =1;

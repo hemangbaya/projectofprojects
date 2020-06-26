@@ -1,7 +1,8 @@
 <app-topbar></app-topbar>
 <form #f="ngForm">
-    Project Name: <input type="text" name="pn" [(ngModel)]="projname"/>
+    Project Name: (use '_' instead of space)<input type="text" name="pn" [(ngModel)]="projname"/>
    <div id="projnamesug"></div>
+   <div style="display: none;" id="projectexists">Project with this name already exists</div>
 
    Github Link: <input type="text" name="gtl" [(ngModel)]="projgithublink"/>
    <div id="projgithublinksug"></div>
@@ -17,7 +18,7 @@
    <div id="projtagssug"></div>
 
    Select Images of your project: 
-   <input type="file" multiple name="uploader" accept=".jpg, .png, .jpeg|image/*" (change)="getimages($event)">
+   <input type="file" multiple name="projectuploader" accept=".jpg, .png, .jpeg|image/*" (change)="getimages($event)">
    <div id="projuploadersug"></div>
    
    <button (click)="sendprojdetails()">Submit</button>
