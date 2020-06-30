@@ -13,6 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 export class SigninComponent implements OnInit {
   emailofuser;
   passwordofuser;
+  user;
+  projname;
+  forgotemail: any;
   constructor(private router:Router, private ds:DataService, private route: ActivatedRoute) { }
   message:string;
   ngOnInit(): void {
@@ -20,9 +23,9 @@ export class SigninComponent implements OnInit {
     // alert(JSON.parse(localStorage.getItem('accessString')));
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
       if (response.status == "ok") {
-        alert("You are already logged in!");
         this.router.navigate(['/']);
       }
+      
     });
     this.route.queryParams.subscribe((par) => {
       this.message = par.message;
@@ -35,7 +38,14 @@ export class SigninComponent implements OnInit {
       if(this.message == "accountmade") {
         this.message = "Account created!"
       }
+      this.user=par.user;
+      this.projname=par.projname;
       document.getElementById('fromwhere').innerHTML = this.message;
+      if (par.passchange!='true') {
+        if (localStorage.getItem("accessString").length==20) {
+          alert('It seems like you signed in somewhere else. If it wasn\'t you, please change your password');
+        }
+      }
     })
     
   }
@@ -47,7 +57,13 @@ export class SigninComponent implements OnInit {
         .subscribe((response)=>{
           if(response.status=="ok") {
             localStorage.setItem('accessString', response.data);
-            this.router.navigate(['/']);
+            if (this.projname==undefined && this.user==undefined) {
+              this.router.navigate(['/']);
+            }
+            else {
+              this.router.navigate(['/projectpage'], {queryParams: {user:this.user, projname:this.projname}})
+            }
+            
           }
           else {
             document.getElementById('emailpasswordsuggestion').innerHTML = "Email/password not valid or some error occured";
@@ -57,5 +73,17 @@ export class SigninComponent implements OnInit {
       else {
         document.getElementById('emailpasswordsuggestion').innerHTML = "Email/password not valid or some error occured";
       }
+    }
+
+    changepassword(){
+      // alert(this.forgotemail);
+      this.ds.changepassword({email:this.forgotemail}).subscribe((response)=>{
+        document.getElementById('emailsent').style.display='block';
+      })
+      document.getElementById("forgotpassword").style.display="none";
+      document.getElementById("emailsent").style.display="block";
+    }
+    forgotactivate(){
+      document.getElementById("forgotpassword").style.display="block";
     }
 }

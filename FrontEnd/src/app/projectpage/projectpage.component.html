@@ -1,12 +1,25 @@
 <app-topbar></app-topbar>
+<a href="/profilepage?user={{user}}">
+    <img src="https://robohash.org/{{usersname}}" />
+    {{this.user}}
+</a>
+{{this.usersname}}
 
-{{this.email}}
 {{this.projname}}
 {{this.projdescription}}
-{{this.projgithublink}}
 {{this.projhowtosetup}}
-{{this.likes}}
-{{this.comments}}
+<button (click)="downloadzip()" id="zipbutton">Download Project!</button>
+<div id="downloading" style="display:none">Downloading...</div>
+<img #a alt=""/>
+<img #b alt=""/>
+<img #c alt=""/>
+<img #d alt=""/>
+<img #e alt=""/>
+<div id="like">{{this.likes}}</div>
+<div id="comments" style="height:100px; overflow-y: scroll; "></div>
 {{this.date}}
-
+<input id="commentinput" type="text"/>
+<button (click)="sendcomment()">comment</button>
 <div style="color: gray;" id="likeicon"(click)="likeproject()">like</div>
+<button (click)="deleteproj()" style="display: none;" id="del">Delete this project</button>
+<!-- <button (click)="downloadzip()">Download files</button> -->

@@ -5,6 +5,13 @@
         Password: <input type="password" name="inputPassword" [(ngModel)]="passwordofuser"> <br>
         <button (click) = "signInAction()">Sign In!</button>
         <div id="emailpasswordsuggestion"></div>
+        <button (click)="forgotactivate()">Forgot Password?</button>
+        <div id="forgotpassword" style="display: none;">
+            Enter Registered email<input type="text" id="forgotemail" name="for" [(ngModel)]='forgotemail'>
+            <button (click)="changepassword()">Send Mail</button>
+        </div>
+        <div id="emailsent" style="display: none;">Check your email for Link to reset password</div>
     </form>
 </div>
+
 <div id="fromwhere"></div>

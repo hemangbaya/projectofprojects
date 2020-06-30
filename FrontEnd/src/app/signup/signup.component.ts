@@ -56,7 +56,7 @@ export class SignupComponent implements OnInit {
     document.getElementById('alreadyexists').innerHTML = " ";
     if (formStatus == 1) {
       this.ds.signUp(
-        {name:this.nameofuser.toLowerCase(), email:this.emailofuser.toLowerCase(), password: this.passwordofuser})
+        {name:this.nameofuser, email:this.emailofuser.toLowerCase(), password: this.passwordofuser})
         .subscribe((response) => {
           if (response.status == "ok") {
             this.router.navigate(['/signin'], { queryParams: { message: 'accountmade'}});

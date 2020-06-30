@@ -56,4 +56,31 @@ export class DataService {
   likeproj(data):any {
     return this.http.post(this.baseURL+'/like-proj', data)
   }
+
+  getcomment(data):any {
+    return this.http.post(this.baseURL+'/get-comment', data);
+  }
+  getimage(data):any{
+    return this.http.post(this.baseURL+'/get-image', data);
+  }
+  downloadzip(data):any {
+    return this.http.post(this.baseURL+'/download-zip',data);
+  }
+
+  getprojects(data):any {
+    return this.http.post(this.baseURL+'/get-projects',data);
+  }
+
+  getnewpassword(data):any{
+    return this.http.post(this.baseURL+'/get-new-password', data);
+  }
+  changepassword(data):any {
+    return this.http.post(this.baseURL+'/change-password', data);
+  }
+  searchprojects(data):any {
+    return this.http.post(this.baseURL+'/search-projects', data);
+  }
+  deleteproject(data):any{
+    return this.http.post(this.baseURL+'/delete-project', data);
+  }
 }

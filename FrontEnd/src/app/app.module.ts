@@ -17,6 +17,7 @@ import { MainComponent } from './main/main.component';
 import { ProfilepageComponent } from './profilepage/profilepage.component';
 import { ProjectpageComponent } from './projectpage/projectpage.component';
 import { UploadpageComponent } from './uploadpage/uploadpage.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UploadpageComponent } from './uploadpage/uploadpage.component';
     MainComponent,
     ProfilepageComponent,
     ProjectpageComponent,
-    UploadpageComponent
+    UploadpageComponent,
+    ChangepasswordComponent
   ],
   imports: [
     BrowserModule,

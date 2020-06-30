@@ -14,6 +14,7 @@ export class TopbarComponent implements OnInit {
 
   constructor(private router:Router, private ds:DataService) { }
  name;
+ email;
   ngOnInit(): void {
     // localStorage.removeItem("accessString");
     if (localStorage.getItem("accessString") == undefined) {
@@ -24,6 +25,7 @@ export class TopbarComponent implements OnInit {
       var y = document.getElementById("profilepicturelogoutbutton");
       if (response.status == "ok") {
         this.name = response.data.name;
+        this.email = response.data.email;
         x.style.display = "none";
         y.style.display = "block";
       }

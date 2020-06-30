@@ -1,4 +1,19 @@
-<app-searchbar></app-searchbar>
-<app-projectcardpanel>
-    <app-projectcard></app-projectcard>
-</app-projectcardpanel>
+<form #f="ngForm">
+    <input type="text" name="ser" [(ngModel)]="searchterm"/>
+    <button (click)="search()">Search</button>
+</form>
+<div id="projs">
+    
+</div>
+
+<img #a alt="" style="height:300px;width:300px;"/>
+<img #b alt="" style="height:300px;width:300px;"/>
+<img #c alt="" style="height:300px;width:300px;"/>
+<img #d alt="" style="height:300px;width:300px;"/>
+<img #e alt="" style="height:300px;width:300px;"/>
+<img #z alt="" style="height:300px;width:300px;"/>
+<img #g alt="" style="height:300px;width:300px;"/>
+<img #h alt="" style="height:300px;width:300px;"/>
+
+
+<div id="pages"></div>

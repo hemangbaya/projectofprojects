@@ -10,11 +10,12 @@ import { Router } from '@angular/router';
 export class UploadpageComponent implements OnInit {
   projname;
   projdescription;
-  projgithublink;
   projhowtosetup;
   projuploader:Array<File>;
   projtags;
   email;
+  zip;
+  name;
   constructor(private ds:DataService, private router:Router) { }
   ngOnInit(): void {
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
@@ -23,13 +24,17 @@ export class UploadpageComponent implements OnInit {
       }
       else {
         this.email = response.data.email;
+        this.name = response.data.name;
       }
     });
-    
+    document.getElementById("projzipsug").style.display="none";
   }
 
   getimages(eve) {
     this.projuploader=eve.target.files;
+  }
+  getzip(eve) {
+    this.zip=eve.target.files[0];
   }
   sendprojdetails() {
     var desc = document.getElementById('projectdescription') as any;
@@ -41,10 +46,11 @@ export class UploadpageComponent implements OnInit {
 
     document.getElementById('projnamesug').innerHTML = '';
     document.getElementById('projdescriptionsug').innerHTML = '';
-    document.getElementById('projgithublinksug').innerHTML = '';
     document.getElementById('projhowtosetupsug').innerHTML = '';
     document.getElementById('projtagssug').innerHTML = '';
     document.getElementById('projuploadersug').innerHTML = '';
+
+    
 
     var formstat = 1;
     if (this.projname=="" || this.projname==null || /\s/.test(this.projname)) {
@@ -53,10 +59,6 @@ export class UploadpageComponent implements OnInit {
     }
     if (this.projdescription=="" || this.projdescription==null) {
       document.getElementById("projdescriptionsug").innerHTML = 'Enter Description';
-      formstat=0;
-    }
-    if (this.projgithublink=="" || this.projgithublink==null) {
-      document.getElementById("projgithublinksug").innerHTML = 'Enter link to project on GitHub';
       formstat=0;
     }
     if (this.projhowtosetup=="" || this.projhowtosetup==null) {
@@ -77,6 +79,9 @@ export class UploadpageComponent implements OnInit {
         formstat=0;
       }
     }
+    if (this.zip==undefined || this.zip.length==0) {
+      document.getElementById("projzipsug").style.display="block";
+    }
     document.getElementById("projectexists").style.display = "none";
     if (formstat == 1) {
       // this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
@@ -84,21 +89,23 @@ export class UploadpageComponent implements OnInit {
         
           var uploadhelper = new FormData();
           uploadhelper.set("email", this.email);
-          uploadhelper.set("projname", this.projname);
+          uploadhelper.set("projname", this.projname.toLowerCase());
           uploadhelper.set("projdescription", this.projdescription);
-          uploadhelper.set("projgithublink", this.projgithublink);
           uploadhelper.set("projhowtosetup", this.projhowtosetup);
           uploadhelper.set("projtags", this.projtags);
+          uploadhelper.set("imgcnt", String(this.projuploader.length));
+          uploadhelper.set("name", this.name); 
           for (var i=0; i<this.projuploader.length;i++) {
             uploadhelper.append("proj",this.projuploader[i], this.projuploader[i]['name']);
           }
+          uploadhelper.set("zip", this.zip);
           
       //     alert("asdf");
       //     this.ds.addproject( uploadhelper).subscribe((data)=>{alert(JSON.stringify(data))});
           this.ds.projectexistchecker({email:this.email, projname:this.projname}).subscribe((data)=>{
             if (data.status=="ok") {
               this.ds.addproject( uploadhelper).subscribe((data)=>{  });
-              this.router.navigate(['/profilepage'], { queryParams: { message: 'me'}});
+              this.router.navigate(['/profilepage'], { queryParams: {user: this.email}});
             }
             else {
               document.getElementById("projectexists").style.display = "block";

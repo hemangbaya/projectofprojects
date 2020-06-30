@@ -7,6 +7,7 @@ import { MainComponent } from './main/main.component';
 import { ProfilepageComponent } from './profilepage/profilepage.component';
 import { ProjectpageComponent } from './projectpage/projectpage.component';
 import { UploadpageComponent } from './uploadpage/uploadpage.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'signin', component:SigninComponent},
   {path: 'profilepage', component:ProfilepageComponent},
   {path:'projectpage', component:ProjectpageComponent},
-  {path: 'uploadpage', component:UploadpageComponent}
+  {path: 'uploadpage', component:UploadpageComponent},
+  {path: 'changepassword', component:ChangepasswordComponent}
 ];
 
 @NgModule({
