@@ -31,6 +31,9 @@ export class ProjectpageComponent implements OnInit {
   @ViewChild('e') imge;
   ngOnInit(): void {
     this.route.queryParams.subscribe((par) => {
+      if (par.projname==undefined || par.user==undefined) {
+        this.router.navigate(['/'])
+      }
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
       if (response.status == "ok") {
         this.email = response.data.email;
@@ -42,8 +45,9 @@ export class ProjectpageComponent implements OnInit {
           this.ds.getproject({email:par.user, projname:par.projname}).subscribe((resp)=>{
             if (resp.status=="failed") {
               alert("not found");
-              this.router.navigate(['/signin']);
+              this.router.navigate(['/']);
             }
+            
             this.imgarr=[];
             for (var y=0; y<resp.imgcnt; y++) {
               this.imgarr.push(y);

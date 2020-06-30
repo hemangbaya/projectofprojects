@@ -169,6 +169,7 @@ app.post('/get-project', bodyParser.json(), (req, res)=>{
         if (docs.length==0) {
             res.send({status:'failed'});
         }
+        var flg=0;
         for (var i=0; i<docs.length; i++) {
             // console.log(docs);
             if (err) {
@@ -176,10 +177,14 @@ app.post('/get-project', bodyParser.json(), (req, res)=>{
             }
             else {
                 if (req.body.projname==docs[i].projname) {
+                    flg=1;
                     res.send(docs[i]);
                     break;
                 }
             }
+        }
+        if (flg==0){
+            res.send({status:"failed"});
         }
     })
 })
@@ -312,7 +317,7 @@ app.post('/get-projects',bodyParser.json(), (req, res)=>{
                 end=docs.length;
             }
             
-            var tobesent = revdocs.slice((req.body.page-1)*8, end);
+            tobesent = revdocs.slice((req.body.page-1)*8, end);
             if (tobesent.length>0) {
                 res.send({data:tobesent, status:"ok", pages:pages});
             }
@@ -404,6 +409,7 @@ app.post('/get-projects',bodyParser.json(), (req, res)=>{
             })
         }
     }
+    
 })
 
 function sendMail(from, appPassword, to, subject,  htmlmsg)
