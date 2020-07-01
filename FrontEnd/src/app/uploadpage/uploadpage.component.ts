@@ -27,7 +27,6 @@ export class UploadpageComponent implements OnInit {
         this.name = response.data.name;
       }
     });
-    document.getElementById("projzipsug").style.display="none";
   }
 
   getimages(eve) {
@@ -49,6 +48,7 @@ export class UploadpageComponent implements OnInit {
     document.getElementById('projhowtosetupsug').innerHTML = '';
     document.getElementById('projtagssug').innerHTML = '';
     document.getElementById('projuploadersug').innerHTML = '';
+    document.getElementById('projzipsug').innerHTML=''
 
     
 
@@ -80,7 +80,9 @@ export class UploadpageComponent implements OnInit {
       }
     }
     if (this.zip==undefined || this.zip.length==0) {
-      document.getElementById("projzipsug").style.display="block";
+      document.getElementById("projzipsug").innerHTML="Select one zip file containing project files";
+      // alert(1)
+      formstat=0;
     }
     document.getElementById("projectexists").style.display = "none";
     if (formstat == 1) {

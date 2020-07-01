@@ -22,31 +22,35 @@ export class SigninComponent implements OnInit {
     // alert(this.ds.test);
     // alert(JSON.parse(localStorage.getItem('accessString')));
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
-      if (response.status == "ok") {
-        this.router.navigate(['/']);
-      }
-      
-    });
-    this.route.queryParams.subscribe((par) => {
-      this.message = par.message;
-      if (this.message == undefined) {
-        this.message ="";
-      }
-      if(this.message == "signinfirst") {
-        this.message = "Please sign in first";
-      }
-      if(this.message == "accountmade") {
-        this.message = "Account created!"
-      }
-      this.user=par.user;
-      this.projname=par.projname;
-      document.getElementById('fromwhere').innerHTML = this.message;
-      if (par.passchange!='true') {
-        if (localStorage.getItem("accessString").length==20) {
-          alert('It seems like you signed in somewhere else. If it wasn\'t you, please change your password');
+      // if (response.status == "ok") {
+      //   this.router.navigate(['/']);
+      // }
+      // else {
+      //   if (localStorage.getItem('accessString')!=undefined || localStorage.getItem('accessString').length!=1) {
+
+      //   }
+      // }
+      this.route.queryParams.subscribe((par) => {
+        this.message = par.message;
+        if (this.message == undefined) {
+          this.message ="";
         }
-      }
-    })
+        if(this.message == "signinfirst") {
+          this.message = "Please sign in first";
+        }
+        if(this.message == "accountmade") {
+          this.message = "Account created!"
+        }
+        this.user=par.user;
+        this.projname=par.projname;
+        document.getElementById('fromwhere').innerHTML = this.message;
+        if (par.passchange!='true') {
+          if (localStorage.getItem("accessString").length==20 && response.status!="ok") {
+            alert('It seems like you signed in somewhere else. If it wasn\'t you, please change your password');
+          }
+        }
+      })
+    });
     
   }
 
@@ -66,12 +70,12 @@ export class SigninComponent implements OnInit {
             
           }
           else {
-            document.getElementById('emailpasswordsuggestion').innerHTML = "Email/password not valid or some error occured";
+            document.getElementById('emailpasswordsuggestion').innerHTML = "Email/password not valid";
           }
         })
       }
       else {
-        document.getElementById('emailpasswordsuggestion').innerHTML = "Email/password not valid or some error occured";
+        document.getElementById('emailpasswordsuggestion').innerHTML = "Email/password not valid";
       }
     }
 

@@ -1,18 +1,48 @@
 <app-topbar></app-topbar>
-<button id="changepassword" (click)="changepassword()" style="display: none;">Change password</button>
-<div style="display: none;" id="logout">
-    <button (click) = "logout()" class="button" >Logout</button>
+<div id="profpic" style="width: 160px; margin: auto; text-align: center;">
 </div>
-<div id="emailsent"  style="display: none;">Email sent</div>
-<div id="projsgohere">
 
+<div style="margin: auto; width: 150px;text-align: center;margin-top: 10px;">
+    <div id="emailsent"  style="display: none;">Email sent</div>
 </div>
-<img #a alt=""/>
-<img #b alt=""/>
-<img #c alt=""/>
-<img #d alt=""/>
-<img #e alt=""/>
-<img #f alt=""/>
-<img #g alt=""/>
-<img #h alt=""/>
-<div id="pages"></div>
+<div style="margin: auto; width: 150px;text-align: center;margin-top: 10px;">
+    
+<div style="display: inline-block;">
+    <button id="changepassword" (click)="changepassword()" style="display: none;" class="button">Change password</button>
+</div>
+
+<div style="display: inline-block;">
+    <button (click) = "logout()" class="button" style="display: none;" id="logout">Logout</button>
+</div>
+</div>
+
+
+<div style="margin-top: 0px;">
+    <div id="projs" style="position: absolute;">
+        
+    </div>
+    <div style="display: flex;
+    justify-content: space-evenly;
+    align-content: space-around;
+    width: 80%;
+    margin: 0 auto;
+    flex-wrap: wrap; position: relative;  z-index: -1;">
+    <img #a alt=" " style="height:250px;width:250px; border-radius: 25px;margin-top: 15px;"/>
+    <img #b alt=" " style="height:250px;width:250px; border-radius: 25px;margin-top: 15px;"/>
+    <img #c alt=" " style="height:250px;width:250px; border-radius: 25px;margin-top: 15px;"/>
+    <img #d alt=" " style="height:250px;width:250px; border-radius: 25px;margin-top: 15px;"/>
+    <img #e alt=" " style="height:250px;width:250px; border-radius: 25px;margin-top: 15px;"/>
+    <img #z alt=" " style="height:250px;width:250px; border-radius: 25px;margin-top: 15px;"/>
+    <img #g alt=" " style="height:250px;width:250px; border-radius: 25px;margin-top: 15px;"/>
+    <img #h alt=" " style="height:250px;width:250px; border-radius: 25px;margin-top: 15px;"/>
+    </div>
+</div>
+<div style="height: 20px;"></div>
+
+<div id="pages" style="position: sticky;
+margin:auto;
+text-decoration: none;
+bottom: 0;
+color: white;
+width: 20%;
+text-align: center;display: flex; align-items: center; justify-content: space-evenly;align-content:space-evenly;font-size: 17px;"></div>

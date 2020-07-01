@@ -75,7 +75,7 @@ app.post('/sign-in', bodyParser.json(), (req, res) => {
 app.post('/login-check', bodyParser.json(), (req, res) => {
     const collection = connection.db('people').collection('details');
     collection.find({accessString: req.body.accessString}).toArray((err,docs)=>{
-        if(!err && docs.length>0)
+        if(!err && docs.length==1)
         {
             res.send({status:"ok", data:{name: docs[0].name, email: docs[0].email} });
         }

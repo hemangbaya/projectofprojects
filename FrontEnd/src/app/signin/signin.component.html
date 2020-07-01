@@ -1,17 +1,20 @@
 <app-topbar></app-topbar>
-<div style="margin: auto; border: solid black 1px;width: 1000px;">
+<div style="margin: auto; border: solid black 1px;width: 300px;text-align: center;padding: 30px; border-radius: 25px;background-color: lightgray;">
     <form #f="ngForm">
-        Email: <input type="text" name="inputEmail" [(ngModel)]="emailofuser"> <br>
-        Password: <input type="password" name="inputPassword" [(ngModel)]="passwordofuser"> <br>
-        <button (click) = "signInAction()">Sign In!</button>
+        <br><br>
+        Email: <span>  </span> <input type="text" name="inputEmail" [(ngModel)]="emailofuser" style="border-radius: 2px;"> <br><br>
+        Password: <input type="password" name="inputPassword" [(ngModel)]="passwordofuser" style="border-radius: 2px;"> <br><br>
+        <button (click) = "signInAction()" style="background-color: white;border-radius: 10px; padding: 5px; cursor: pointer;">Sign In!</button>
         <div id="emailpasswordsuggestion"></div>
-        <button (click)="forgotactivate()">Forgot Password?</button>
+        <div style="height: 200px;"></div>
+        <button (click)="forgotactivate()" style="background-color: white;border-radius: 10px; padding: 5px; cursor: pointer;">Forgot Password?</button>
+        
         <div id="forgotpassword" style="display: none;">
-            Enter Registered email<input type="text" id="forgotemail" name="for" [(ngModel)]='forgotemail'>
-            <button (click)="changepassword()">Send Mail</button>
+            Enter Registered Email<br><input type="text" id="forgotemail" name="for" [(ngModel)]='forgotemail' style="border-radius: 2px;">
+            <button (click)="changepassword()" style="background-color: white;border-radius: 10px; padding: 5px; cursor: pointer;">Send Mail</button>
         </div>
         <div id="emailsent" style="display: none;">Check your email for Link to reset password</div>
     </form>
 </div>
-
-<div id="fromwhere"></div>
+<br><br>
+<div id="fromwhere" style="width: 300px; margin: auto;color: black;background-color: lightgreen;display: flex;justify-content: center;text-align: center;"></div>

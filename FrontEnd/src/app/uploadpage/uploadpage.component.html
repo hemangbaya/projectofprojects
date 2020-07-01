@@ -1,26 +1,28 @@
 <app-topbar></app-topbar>
-<form #f="ngForm">
-    Project Name: (use '_' instead of space)<input type="text" name="pn" [(ngModel)]="projname" />
-   <div id="projnamesug"></div>
-   <div style="display: none;" id="projectexists">Project with this name already exists</div>
-
-   Description: <textarea id="projectdescription" ></textarea>
-   <div id="projdescriptionsug"></div>
-
-   How to Setup: <textarea id="projecthowtosetup" ></textarea>
-   <div id="projhowtosetupsug"></div>
-
-   Tags(Comma seperated keywords to get discovered): 
-   <textarea id="projecttags" ></textarea>
-   <div id="projtagssug"></div>
-
-   Select 5 images of your project: 
-   <input type="file" multiple name="projectuploader" accept=".jpg, .png, .jpeg|image/*" (change)="getimages($event)">
-   <div id="projuploadersug"></div>
-
-   Zip file with project files: <input type="file" name="zip" accept=".zip" (change)="getzip($event)">
-   <div id="projzipsug">Select one zip file containing project files</div>
-   <button (click)="sendprojdetails()">Submit</button>
-   
-</form>
+<div style="padding: 25px; width: 700px; border-radius: 25px; border: 1px solid black; background-color: lightgray;margin: auto;text-align: center;">
+    <form #f="ngForm">
+        Project Name: (use '_' instead of space)<input type="text" name="pn" [(ngModel)]="projname" style="width: 200px;height: 30px;border-radius: 2px;"/>
+       <div id="projnamesug" style="color: red;"></div>
+       <div style="display: none;color: blue;" id="projectexists">Project with this name already exists in your account</div><br><br>
+    
+       Description: <br><textarea id="projectdescription" style="height: 100px;width: 500px;border-radius: 2px;"></textarea>
+       <div id="projdescriptionsug" style="color: red;"></div><br><br>
+    
+       How to Setup: <br><textarea id="projecthowtosetup" style="height: 100px;width: 500px;border-radius: 2px;"></textarea>
+       <div id="projhowtosetupsug" style="color: red;"></div><br><br>
+    
+       Tags(Comma seperated keywords to get discovered): <br>
+       <textarea id="projecttags" style="height: 100px;width: 500px;border-radius: 2px;"></textarea>
+       <div id="projtagssug" style="color: red;"></div><br><br>
+    
+       Select 5 images of your project: 
+       <input type="file" multiple name="projectuploader" accept=".jpg, .png, .jpeg|image/*" (change)="getimages($event)">
+       <div id="projuploadersug" style="color: red;"></div><br>
+    
+       Zip file with project files: <input type="file" name="zip" accept=".zip" (change)="getzip($event)">
+       <div id="projzipsug" style="color: red;"></div><br>
+       <button (click)="sendprojdetails()" class="button" style="background-color: white;">Submit</button>
+       
+    </form>
+</div>
 

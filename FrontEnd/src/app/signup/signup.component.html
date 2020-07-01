@@ -1,13 +1,19 @@
 <app-topbar></app-topbar>
-<div style="margin: auto; border: solid black 1px;width: 1000px;">
+<div style="height: 150px; width: 150px; margin: auto;">
+    <img src="" alt=" " id="changingimage" style="height: 150px;width: 150px;"/>
+    </div>
+<div style="margin: auto; border: solid black 1px;width: 500px;border-radius: 25px; text-align: center;padding: 30px;background-color: lightgray;">
     <form #f="ngForm">
+        <br>
         Name: <input type="text" name="inputName"  [(ngModel)]="nameofuser" (change)="profpic($event)"> <br><div id="namesuggestion" ></div>
+        <br>
         Email: <input type="text" name="inputEmail" [(ngModel)]="emailofuser"> <br><div id="emailsuggestion"></div>
+        <br>
         Password: <input type="password" name="inputPassword" [(ngModel)]="passwordofuser"> <br><div id="passwordsuggestion"></div>
+        <br>
         Confirm Password: <input type="password" name="inputPassword" [(ngModel)]="passwordofuserconf"><br><div id="confpasswordsuggestion"></div>
-        <button (click) = "signUpAction()">Sign Up!</button>
-        <div id="alreadyexists"></div>
+        <br>
+        <button (click) = "signUpAction()" style="background-color: white;border-radius: 10px; padding: 5px; cursor: pointer;">Sign Up!</button>
+        <div id="alreadyexists" style="color: blue;"></div>
     </form>
 </div>
-
-<img src="" alt="Avatar" id="changingimage" />

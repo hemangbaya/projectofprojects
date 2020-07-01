@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
                   <div style= "transition:0.1s;font-size:15px;padding:20px;overflow: hidden;height:160px;color:white; width:210px;border-top-left-radius:25px; 
                   border-top-right-radius:25px;
                    position:relative;word-wrap: break-word;text-align:center;opacity:0;" 
-                  onMouseOver="this.style.backgroundColor='#000000'; this.style.opacity=0.9;" onMouseLeave="this.style.opacity=0">
+                  onMouseOver="this.style.backgroundColor='#000000'; this.style.opacity=0.8;" onMouseLeave="this.style.opacity=0">
                  
                   ${this.projs[i].projdescription}</div>
                   <div style="font-size:20px;border-bottom-left-radius:25px;border-bottom-right-radius:25px;color:white;padding:5px;overflow: hidden; background-color:#000000; opacity:0.9; height:40px;">
@@ -225,24 +225,24 @@ export class HomeComponent implements OnInit {
               }
               if (start!=1) {
                 this.navtext+=`
-                    <div style="width:35px; height:35px; border-radius:50px; color:black;">....</div>
+                    <div style="margin-bottom: 10px;width:35px; height:35px; border-radius:50px; color:black;">....</div>
                   `
               }
               for (var q=start; q<=end; q++) {
                 if (q==this.page) {
                   this.navtext+=`<a href="/?searchterm=${this.searchterm}&page=${q}">
-                  <div style="height:17px;padding:7px; border-radius:3px; background-color:white;color:black;border:1px solid black;">${q}</div>
+                  <div style="margin-bottom: 10px;height:17px;padding:7px; border-radius:3px; background-color:white;color:black;border:1px solid black">${q}</div>
                 </a>`
                 }
                 else {
                   this.navtext+=`<a href="/?searchterm=${this.searchterm}&page=${q}">
-                    <div style="height:17px;padding:7px;border-radius:3px; background-color:black;color:white;">${q}</div>
+                    <div style="margin-bottom: 10px;height:17px;padding:7px;border-radius:3px; background-color:#bdbdbd;color:white;">${q}</div>
                   </a>`
                 }
               }
               if (end!=this.pages){
                 this.navtext+=`
-                    <div style="width:35px; height:35px; border-radius:50px;color:black;">....</div>
+                    <div style="margin-bottom: 10px;width:35px; height:35px; border-radius:50px;color:black;">....</div>
                   `
               }
               

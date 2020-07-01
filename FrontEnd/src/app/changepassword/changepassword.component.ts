@@ -27,6 +27,7 @@ export class ChangepasswordComponent implements OnInit {
         alert("Password changed!");
       }
       else{
+        alert("Link doesn't work anymore");
         this.router.navigate(['/']);
       }
       

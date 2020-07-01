@@ -34,22 +34,22 @@ export class SignupComponent implements OnInit {
     document.getElementById('confpasswordsuggestion').innerHTML = '';
 
       if (this.nameofuser == '' || this.nameofuser == null) {
-        document.getElementById('namesuggestion').innerHTML = 'Enter Name';
+        document.getElementById('namesuggestion').innerHTML = '<div style="color:red;">Enter Name</div>';
         formStatus = 0;
       }
 
       if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.emailofuser) || this.emailofuser == null) {
-        document.getElementById('emailsuggestion').innerHTML = 'Invalid Email Id';
+        document.getElementById('emailsuggestion').innerHTML = '<div style="color:red;">Invalid Email Id</div>';
         formStatus = 0;
       }
 
       if (!/^.{6,}$/.test(this.passwordofuser) || this.passwordofuser == null) {
-        document.getElementById('passwordsuggestion').innerHTML = 'Password must contain 6 characters';
+        document.getElementById('passwordsuggestion').innerHTML = '<div style="color:red;">Password must contain 6 characters</div>';
         formStatus = 0;
       }
 
       if (this.passwordofuserconf != this.passwordofuser || this.passwordofuserconf== null) {
-        document.getElementById('confpasswordsuggestion').innerHTML = 'Passwords don\'t match';
+        document.getElementById('confpasswordsuggestion').innerHTML = '<div style="color:red;">Passwords don\'t match</div>';
         formStatus = 0;
       }
     
@@ -62,7 +62,7 @@ export class SignupComponent implements OnInit {
             this.router.navigate(['/signin'], { queryParams: { message: 'accountmade'}});
           }
           else {
-            document.getElementById('alreadyexists').innerHTML = 'Account already exists or some error occured.'
+            document.getElementById('alreadyexists').innerHTML = 'Account already exists. Now just sign in!'
           }
         });
     }
