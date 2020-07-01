@@ -107,7 +107,7 @@ export class UploadpageComponent implements OnInit {
               this.ds.addproject( uploadhelper).subscribe((data)=>{  });
               setTimeout(()=>{
                 this.router.navigate(['/profilepage'], { queryParams: {user: this.email}});
-              }, 300)
+              }, 200)
             }
             else {
               document.getElementById("projectexists").style.display = "block";

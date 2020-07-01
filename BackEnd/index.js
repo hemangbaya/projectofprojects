@@ -8,7 +8,7 @@ const fs = require("fs");
 var nodemailer = require('nodemailer');
 
 
-var client = new MongoClient('mongodb+srv://user_0:user_0_password@cluster0-2mqcw.mongodb.net/people?retryWrites=true&w=majority', {useNewUrlParser:true});
+var client = new MongoClient('mongodb+srv://user_0:user_0_password@cluster0-2mqcw.mongodb.net/people?retryWrites=true&w=majority', {useUnifiedTopology:true});
 var connection;
 
 client.connect((err, con) => {
@@ -123,7 +123,6 @@ app.post('/add-project', (req, res, next) => {
             }
             wordstart=i+1;
         }
-
     }
     a.push(req.body.projtags.slice(wordstart, req.body.projtags.length))
     // var newstr = req.body.projtags.replace(',', ' ');
@@ -302,11 +301,11 @@ app.post('/get-projects',bodyParser.json(), (req, res)=>{
         // console.log(collection);
         // console.log(1);
         collection.find({email:req.body.email}).toArray((err, docs)=>{
-            if (docs.length/8!=0) {
-                var pages=Math.floor(docs.length/8) + 1;
+            if (docs.length%8==0) {
+                var pages=Math.floor(docs.length/8);
             }
             else{
-                var pages=Math.floor(docs.length/8)
+                var pages=Math.floor(docs.length/8)+1;
             }
             var end= 0;
             var revdocs = docs.reverse();
@@ -356,11 +355,11 @@ app.post('/get-projects',bodyParser.json(), (req, res)=>{
                     return (b.likes-a.likes);
                 })
 
-                if (tobesent.length/8!=0) {
-                    var pages=Math.floor(tobesent.length/8) + 1;
+                if (tobesent.length%8==0) {
+                    var pages=Math.floor(tobesent.length/8);
                 }
                 else{
-                    var pages=Math.floor(tobesent.length/8)
+                    var pages=Math.floor(tobesent.length/8)+1;
                 }
                 var end= 0;
                 if ((req.body.page)*8<tobesent.length){
@@ -383,12 +382,16 @@ app.post('/get-projects',bodyParser.json(), (req, res)=>{
                 tobesent=docs.sort((a, b)=>{
                     return b.likes-a.likes;
                 })
-                if (tobesent.length/8!=0) {
-                    var pages=Math.floor(tobesent.length/8) + 1;
+                if (Math.floor(tobesent.length%8)==0) {
+                    var pages=Math.floor(tobesent.length/8);
+                    // console.log(1)
                 }
                 else{
-                    var pages=Math.floor(tobesent.length/8)
+                    var pages=Math.floor(tobesent.length/8)+1;
                 }
+                // console.log(tobesent.length)
+                // console.log(Math.floor(tobesent.length/8))
+                // console.log(pages);
                 var end= 0;
                 if ((req.body.page)*8<tobesent.length){
                     end=req.body.page*8;
@@ -513,7 +516,7 @@ app.post('/download-zip', bodyParser.json(), (req, res)=>{
     collection.find({accessString:req.body.accessString}).toArray((err, docs)=>{
         if (docs.length>0) {
             var imgbytes = fs.readFileSync('./projimages/zip-'+req.body.user+'-'+req.body.projname+'.zip');
-            res.send({data: imgbytes, ran:randomStringGenerator()})
+            res.send({data: imgbytes, ran:randomStringGenerator(), status:"ok"})
         }
         else {
             res.send({status:"failed"});

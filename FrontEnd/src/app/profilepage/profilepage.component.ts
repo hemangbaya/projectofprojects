@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
-import * as fileSaver from 'file-saver';
 
 @Component({
   selector: 'app-profilepage',
@@ -10,7 +9,7 @@ import * as fileSaver from 'file-saver';
 })
 export class ProfilepageComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute, private ds:DataService) { }
+  constructor(private route:ActivatedRoute, private ds:DataService, private router:Router) { }
   name;
   projs:Array<any>;
   myemail;
@@ -195,6 +194,7 @@ export class ProfilepageComponent implements OnInit {
           this.myemail=r.data.email;
           if (this.myemail==par.user) {
             document.getElementById('changepassword').style.display='block';
+            document.getElementById('logout').style.display = 'block';
           }
       });
       })
@@ -210,6 +210,12 @@ export class ProfilepageComponent implements OnInit {
   
   setcontent() {
     document.getElementById('projsgohere').innerHTML=this.content;
+  }
+
+  logout() {
+    localStorage.setItem("accessString","a")
+    window.location.reload(); 
+    this.router.navigate(['/']);
   }
 }
 

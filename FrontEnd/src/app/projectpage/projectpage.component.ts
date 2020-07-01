@@ -214,9 +214,11 @@ export class ProjectpageComponent implements OnInit {
 
   downloadzip() {
     this.ds.downloadzip({accessString: localStorage.getItem('accessString'), user: this.user, projname:this.projname}).subscribe((resp)=>{
-    var arrayBufferView = new Uint8Array(resp.data.data);
-    var blob = new Blob([arrayBufferView]);
-    fileSaver.saveAs(blob, resp.ran+'.zip')
+      if (resp.status=="ok"){
+        var arrayBufferView = new Uint8Array(resp.data.data);
+        var blob = new Blob([arrayBufferView]);
+        fileSaver.saveAs(blob, resp.ran+'.zip')
+      }
     })
     document.getElementById('zipbutton').style.display = 'none';
     document.getElementById('downloading').style.display = 'block';
@@ -225,7 +227,7 @@ export class ProjectpageComponent implements OnInit {
   deleteproj(){
     if (confirm('are you sure?')) {
       this.ds.deleteproject({email:this.email, accessString:localStorage.getItem('accessString'), projname:this.projname}).subscribe((re)=>{
-        if (re.status){
+        if (re.status=="ok"){
           alert('Project Deleted');
           setTimeout(()=>{this.router.navigate(['/profilepage'], {queryParams:{user:this.email}})}, 500)
         }

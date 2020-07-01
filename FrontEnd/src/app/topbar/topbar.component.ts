@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // import { LogoutserviceService } from '../logoutservice.service';
 import { DataService} from '../data.service'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-topbar',
@@ -12,7 +13,7 @@ import { DataService} from '../data.service'
 
 export class TopbarComponent implements OnInit {
 
-  constructor(private router:Router, private ds:DataService) { }
+  constructor(private router:Router, private ds:DataService, private http:HttpClient) { }
  name;
  email;
   ngOnInit(): void {
@@ -34,13 +35,19 @@ export class TopbarComponent implements OnInit {
         y.style.display = "none";
       }
     });
+    this.getapi();
 }
 
   // topbarlogoutcommand:boolean = false;
-  logout() {
-    localStorage.setItem("accessString","a")
-    window.location.reload(); 
-    this.router.navigate(['/']);
+  
+  getapi() {
+    this.http.get<any>('https://api.covid19api.com/summary').subscribe((d)=>{
+      // alert(JSON.stringify(d));
+      var cont = 'Covid-19 Update<br>Confirmed-';
+      cont+=String(d.Global.TotalConfirmed)+'<br>Deaths-';
+      cont+=String(d.Global.TotalDeaths)+'<br>Recovered-';
+      cont+=String(d.Global.TotalRecovered)+'<br>'
+      document.getElementById('api').innerHTML = cont;
+    })
   }
-
 } 
