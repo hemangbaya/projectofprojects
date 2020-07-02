@@ -1,25 +1,62 @@
 <app-topbar></app-topbar>
-<a href="/profilepage?user={{user}}">
-    <img src="https://robohash.org/{{usersname}}" />
-    {{this.user}}
-</a>
-{{this.usersname}}
+<div id="all" style="display: none;">
+    <div style="width: 40%; margin-bottom: 20px; height: 90px; text-align: center;margin-bottom: 30px;">
+        <a href="/profilepage?user={{user}}">
+        <img src="https://robohash.org/{{usersname}}" style="height: 80px; width: 80px;"/>
+        <div>
+            {{this.user}}
+        </div></a>
+    </div>
+<div style="font-size: 35px;text-align: center;">
+    {{this.projname}}
+</div>
+<div style="text-align: center;">{{this.date}}</div>
+<br>
 
-{{this.projname}}
-{{this.projdescription}}
-{{this.projhowtosetup}}
-<button (click)="downloadzip()" id="zipbutton">Download Project!</button>
+
+<div style="display: flex;
+justify-content: space-evenly;
+align-content: space-around;
+width: 90%;
+margin: 0 auto;
+flex-wrap: wrap; position: relative;">
+    <img #a alt=" " class="imgs" style="height: 300px; margin: 30px;border-radius: 25px;"/>
+    <img #b alt=" " class="imgs" style="height: 300px; margin: 30px;border-radius: 25px;"/>
+    <img #c alt=" " class="imgs" style="height: 300px; margin: 30px;border-radius: 25px;"/>
+    <img #d alt=" " class="imgs" style="height: 300px; margin: 30px;border-radius: 25px;"/>
+    <img #e alt=" " class="imgs" style="height: 300px; margin: 30px;border-radius: 25px;"/>
+</div>
+<!-- {{this.usersname}} -->
+<br>
+<div style="width: 60%;margin: auto;">
+    <span style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;width: 60%;font-size: 25px;">Description</span><br>
+    <span style="word-wrap: break-word; font-size: 20px; ">{{this.projdescription}}</span>
+</div>
+<br><br>
+<div style="width: 60%;margin: auto;">
+    <span style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;width: 60%;font-size: 25px;">How To Setup</span><br>
+    <span style="word-wrap: break-word; font-size: 20px; ">{{this.projhowtosetup}}</span>
+    <br><br>
+    
+<button (click)="downloadzip()" id="zipbutton" class="button">Download Project!</button>
 <div id="downloading" style="display:none">Downloading...</div>
-<img #a alt=""/>
-<img #b alt=""/>
-<img #c alt=""/>
-<img #d alt=""/>
-<img #e alt=""/>
-<div id="like">{{this.likes}}</div>
-<div id="comments" style="height:100px; overflow-y: scroll; "></div>
-{{this.date}}
-<input id="commentinput" type="text"/>
-<button (click)="sendcomment()">comment</button>
-<div style="color: gray;" id="likeicon"(click)="likeproject()">like</div>
-<button (click)="deleteproj()" style="display: none;" id="del">Delete this project</button>
+
+</div>
+
+<div style="text-align: center;">
+<div style="width:300px; height: 226px;display: inline-block;">
+    <div style="width: 300px; height: 226px;border: 1px solid black;border-radius: 25px;">
+    <div style="cursor: pointer; border-top-left-radius:25px;border-top-right-radius: 25px; background-color: gray;height: 20px; width: 300px;
+    display: flex;justify-content: center;text-align: center;" id="likeicon"(click)="likeproject()"><span style="margin: auto; "id="lkstatus">click to like</span> 
+    <div id="like" style="margin: auto;
+    color: black;">{{this.likes}}</div></div>
+    <div id="comments" style="font-family: sans-serif; height:150px;width: 300px; overflow-y: scroll; margin:2px;word-wrap: break-word;"></div>
+    <input id="commentinput" type="text" style="width: 225px;" />
+    <button (click)="sendcomment()" class="button">comment</button>
+    </div>
+</div>
+</div>
+
+<button (click)="deleteproj()" style="display: none;float: right;margin: 20px;color: red;" id="del" class="button">Delete this project</button>
 <!-- <button (click)="downloadzip()">Download files</button> -->
+</div>

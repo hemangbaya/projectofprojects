@@ -36,6 +36,7 @@ export class ProjectpageComponent implements OnInit {
       }
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
       if (response.status == "ok") {
+        document.getElementById('all').style.display="block";
         this.email = response.data.email;
         // alert(this.email);
         if (par.user==this.email) {
@@ -133,15 +134,17 @@ export class ProjectpageComponent implements OnInit {
               if (data.status=="liked") {
                 // alert("red");
                 document.getElementById('likeicon').style.backgroundColor='red';
+                document.getElementById('lkstatus').innerHTML='Liked';
               }
               if (data.status=="notliked") {
                 // alert("gray");
                 document.getElementById('likeicon').style.backgroundColor='gray';
+                document.getElementById('lkstatus').innerHTML='Click to like!';
               }
               // alert(JSON.stringify(data));
             })
 
-            this.allcomments='';
+            this.allcomments='<--------------><br>';
             this.comments.forEach(element => {
               this.allcomments+=`<a href="/profilepage?user=${element.slice(0, element.indexOf('/'))}">${element.slice(0, element.indexOf('/'))}</a>${element.slice(element.indexOf('/'),)}<br>`
             });
@@ -173,9 +176,11 @@ export class ProjectpageComponent implements OnInit {
           lk=1;
           // alert(nooflikes)
           document.getElementById('likeicon').style.backgroundColor='red';
+          document.getElementById('lkstatus').innerHTML="Liked!";
         }
         if (data.status=="unliked") {
           document.getElementById("likeicon").style.background="gray";
+          document.getElementById('lkstatus').innerHTML="Click to like!";
           lk=-1;
         }
         nooflikes=nooflikes+lk;

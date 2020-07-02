@@ -53,8 +53,8 @@ export class UploadpageComponent implements OnInit {
     
 
     var formstat = 1;
-    if (this.projname=="" || this.projname==null || /\s/.test(this.projname)) {
-      document.getElementById("projnamesug").innerHTML = 'Enter valid project name';
+    if (this.projname=="" || this.projname==null || /\s/.test(this.projname) || this.projname.length>30) {
+      document.getElementById("projnamesug").innerHTML = 'Enter valid project name(max length 20)';
       formstat=0;
     }
     if (this.projdescription=="" || this.projdescription==null) {
@@ -109,7 +109,7 @@ export class UploadpageComponent implements OnInit {
               this.ds.addproject( uploadhelper).subscribe((data)=>{  });
               setTimeout(()=>{
                 this.router.navigate(['/profilepage'], { queryParams: {user: this.email}});
-              }, 200)
+              }, 300)
             }
             else {
               document.getElementById("projectexists").style.display = "block";

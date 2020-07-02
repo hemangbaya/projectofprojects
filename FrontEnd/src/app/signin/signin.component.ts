@@ -22,14 +22,15 @@ export class SigninComponent implements OnInit {
     // alert(this.ds.test);
     // alert(JSON.parse(localStorage.getItem('accessString')));
     this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
-      // if (response.status == "ok") {
-      //   this.router.navigate(['/']);
-      // }
-      // else {
-      //   if (localStorage.getItem('accessString')!=undefined || localStorage.getItem('accessString').length!=1) {
+      if (response.status == "ok") {
+        alert("Already logged in");
+        this.router.navigate(['/']);
+      }
+      else {
+        if (localStorage.getItem('accessString')!=undefined || localStorage.getItem('accessString').length!=1) {
 
-      //   }
-      // }
+        }
+      }
       this.route.queryParams.subscribe((par) => {
         this.message = par.message;
         if (this.message == undefined) {
