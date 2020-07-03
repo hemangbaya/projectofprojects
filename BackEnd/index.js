@@ -6,6 +6,7 @@ const ObjectId = require('mongodb').ObjectId;
 const multer = require("multer");
 const fs = require("fs");
 var nodemailer = require('nodemailer');
+const path = require('path');
 
 
 var client = new MongoClient('mongodb+srv://user_0:user_0_password@cluster0-2mqcw.mongodb.net/people?retryWrites=true&w=majority', {useUnifiedTopology:true});
@@ -23,7 +24,13 @@ client.connect((err, con) => {
 
 const app = express();
 app.use(cors());
-// app.use(express.static(path.join(_dirname, './projimages')));
+app.use(express.static(path.join(__dirname, 'projimages')));
+app.use(express.static(path.join(__dirname, 'FrontEnd')));
+
+
+app.get('/', (req, res)=>{
+    res.sendFile('index.html');
+})
 
 app.post('/sign-up', bodyParser.json(), (req, res) => {
     const collection = connection.db('people').collection('details');
