@@ -1,8 +1,0 @@
-1. install node and set in path
-2. install angular
-3. install cors body-parser express nodemailer filesaver through npm
-4. clone project from github
-5. change database link and make collection projects, details, changepassword, liked 
-6. go in from end and serve angular project on localhost
-7. go in backend directory and run index.js in node
-8. the project is set up!
