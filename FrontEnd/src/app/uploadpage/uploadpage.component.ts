@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService} from '../data.service';
 import { Router } from '@angular/router';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-uploadpage',
@@ -27,6 +28,7 @@ export class UploadpageComponent implements OnInit {
         this.name = response.data.name;
       }
     });
+    document.getElementById("loading").style.display="none";
   }
 
   getimages(eve) {
@@ -88,7 +90,9 @@ export class UploadpageComponent implements OnInit {
     if (formstat == 1) {
       // this.ds.check({accessString: localStorage.getItem('accessString')}).subscribe((response)=> {
       //   if (response.status == "ok") {
-        
+          document.getElementById("loading").style.display="block";
+          document.getElementById("submitbutton").style.display="none";
+
           var uploadhelper = new FormData();
           uploadhelper.set("email", this.email);
           uploadhelper.set("projname", this.projname.toLowerCase());
@@ -105,11 +109,21 @@ export class UploadpageComponent implements OnInit {
       //     alert("asdf");
       //     this.ds.addproject( uploadhelper).subscribe((data)=>{alert(JSON.stringify(data))});
           this.ds.projectexistchecker({email:this.email, projname:this.projname}).subscribe((data)=>{
+            
             if (data.status=="ok") {
-              this.ds.addproject( uploadhelper).subscribe((data)=>{  });
-              setTimeout(()=>{
-                this.router.navigate(['/profilepage'], { queryParams: {user: this.email}});
-              }, 300)
+              this.ds.addproject( uploadhelper).subscribe((data)=>{
+                if (data.status=="ok") {
+                  setTimeout(()=>{
+                    this.router.navigate(['/profilepage'], { queryParams: {user: this.email}});
+                  }, 300)
+                }
+                else {
+                  document.getElementById("loading").style.display="none";
+                  document.getElementById("submitbutton").style.display="block";
+                }
+                
+              });
+              
             }
             else {
               document.getElementById("projectexists").style.display = "block";

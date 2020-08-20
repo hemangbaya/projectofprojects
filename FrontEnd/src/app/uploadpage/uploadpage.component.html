@@ -21,7 +21,8 @@
     
        Zip file with project files: <input type="file" name="zip" accept=".zip" (change)="getzip($event)">
        <div id="projzipsug" style="color: red;"></div><br>
-       <button (click)="sendprojdetails()" class="button" style="background-color: white;">Submit</button>
+       <button (click)="sendprojdetails()" id="submitbutton" class="button" style="background-color: white;">Submit</button>
+       <div class="loader" id="loading"></div>
        
     </form>
 </div>
