@@ -114,7 +114,7 @@ app.post('/add-project', (req, res, next) => {
     req.cnt=0;
     req.exists=true
     next();
-}, uploadgetter.fields([{name: "proj", maxCount:5}]), (req, res) => {
+}, uploadgetter.fields([{name: "proj", maxCount:5}, {name:"zip", maxCount:1}]), (req, res) => {
     
     const collection = connection.db('people').collection('projects');
     req.body.likes=0;
@@ -565,7 +565,7 @@ app.listen(3000, () => {
 //   next(); }, uploadhelper.fields([{name:'projimage', maxCount:5}]), (req, res) => {
 //     res.send({status:"ok"});
 // });
-// app.post('/login-check', bodyParser.json(), (req, res) => {
+// app.post('/login-check', express.json(), (req, res) => {
 //     const collection = connection.db('people').collection('details');
 //     collection.find({accessString: req.body.accessString}).toArray((err,docs)=>{
 //         if(!err && docs.length>0)
@@ -650,7 +650,7 @@ app.listen(3000, () => {
 // }
 // );
 
-// app.post("add-images", bodyParser.json(), (req, res) => {
+// app.post("add-images", express.json(), (req, res) => {
 //     upload.fields([{ name: 'proj', maxCount: 5 }]), (req,res)=>{ 
 //         console
 //         res.send({status:"ok"});
