@@ -1,12 +1,13 @@
 <app-topbar></app-topbar>
-<div style="margin: auto; border: solid black 1px;width: 300px;text-align: center;padding: 30px; border-radius: 25px;background-color: lightgray;">
+
+<div style="margin: auto; border: solid black 1px;width: 250px;text-align: center;padding: 20px; border-radius: 2px;background-color: #F7A994;">
     <form #f="ngForm">
-        <br><br>
-        Email: <span>  </span> <input type="text" name="inputEmail" [(ngModel)]="emailofuser" style="border-radius: 2px;"> <br><br>
-        Password: <input type="password" name="inputPassword" [(ngModel)]="passwordofuser" style="border-radius: 2px;"> <br><br>
-        <button (click) = "signInAction()" style="background-color: white;border-radius: 10px; padding: 5px; cursor: pointer;">Sign In!</button>
+        <br>
+        <p style="font-size:small;">Email</p> <input type="text" name="inputEmail" [(ngModel)]="emailofuser" style="border-radius: 10px; width: 200px; border: solid black 0px; outline: none; padding: 3px;"> <br><br>
+        <p style="font-size:small;">Password</p> <input type="password" name="inputPassword" [(ngModel)]="passwordofuser" style="border-radius: 10px; width: 200px; border: solid black 0px; outline: none; padding: 3px;"> <br><br>
+        <button (click) = "signInAction()" style="border-radius: 5px; height: 20px; width: 75px; cursor: pointer;font-size: small;">Sign In!</button>
         <div id="emailpasswordsuggestion"></div>
-        <div style="height: 200px;"></div>
+        <div style="height: 75px;"></div>
         <button (click)="forgotactivate()" style="background-color: white;border-radius: 10px; padding: 5px; cursor: pointer;">Forgot Password?</button>
         
         <div id="forgotpassword" style="display: none;">
@@ -16,5 +17,6 @@
         <div id="emailsent" style="display: none;">Check your email for Link to reset password</div>
     </form>
 </div>
-<br><br>
-<div id="fromwhere" style="width: 300px; margin: auto;color: black;background-color: lightgreen;display: flex;justify-content: center;text-align: center;"></div>
+<br>
+<div id="fromwhere" style="width: 300px; margin: auto;color: black;background-color: #A0F797;display: flex;justify-content: center;text-align: center;"></div>
+

@@ -4,9 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopbarComponent } from './topbar/topbar.component';
-import { SearchbarComponent } from './searchbar/searchbar.component';
-import { ProjectcardpanelComponent } from './projectcardpanel/projectcardpanel.component';
-import { ProjectcardComponent } from './projectcard/projectcard.component';
 import { SignupComponent } from './signup/signup.component';
 
 import { FormsModule } from '@angular/forms'
@@ -23,9 +20,6 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
   declarations: [
     AppComponent,
     TopbarComponent,
-    SearchbarComponent,
-    ProjectcardpanelComponent,
-    ProjectcardComponent,
     SignupComponent,
     HomeComponent,
     SigninComponent,

@@ -35,19 +35,10 @@ export class TopbarComponent implements OnInit {
         y.style.display = "none";
       }
     });
-    this.getapi();
+    
 }
 
   // topbarlogoutcommand:boolean = false;
   
-  getapi() {
-    this.http.get<any>('https://api.covid19api.com/summary').subscribe((d)=>{
-      // alert(JSON.stringify(d));
-      var cont = 'Covid-19 Update<br>Confirmed-';
-      cont+=String(d.Global.TotalConfirmed)+'<br>Deaths-';
-      cont+=String(d.Global.TotalDeaths)+'<br>Recovered-';
-      cont+=String(d.Global.TotalRecovered)+'<br>'
-      document.getElementById('api').innerHTML = cont;
-    })
-  }
+  
 } 

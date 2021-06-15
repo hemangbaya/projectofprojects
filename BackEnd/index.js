@@ -32,7 +32,7 @@ app.get('/', (req, res)=>{
     res.sendFile('index.html');
 })
 
-app.post('/sign-up', bodyParser.json(), (req, res) => {
+app.post('/sign-up', express.json(), (req, res) => {
     const collection = connection.db('people').collection('details');
     collection.find({email: req.body.email }).toArray((err,docs)=>{
         if(!err && docs.length>0)
@@ -61,7 +61,7 @@ function randomStringGenerator() {
     return accessString;
 }
 
-app.post('/sign-in', bodyParser.json(), (req, res) => {
+app.post('/sign-in', express.json(), (req, res) => {
     const collection = connection.db('people').collection('details');
     collection.find(req.body).toArray((err,docs)=>{
         if(!err && docs.length>0) {   
@@ -79,7 +79,7 @@ app.post('/sign-in', bodyParser.json(), (req, res) => {
 });
 
 
-app.post('/login-check', bodyParser.json(), (req, res) => {
+app.post('/login-check', express.json(), (req, res) => {
     const collection = connection.db('people').collection('details');
     collection.find({accessString: req.body.accessString}).toArray((err,docs)=>{
         if(!err && docs.length==1)
@@ -114,7 +114,7 @@ app.post('/add-project', (req, res, next) => {
     req.cnt=0;
     req.exists=true
     next();
-}, uploadgetter.fields([{name: "proj", maxCount:5}, {name:"zip", maxCount:1}]), (req, res) => {
+}, uploadgetter.fields([{name: "proj", maxCount:5}]), (req, res) => {
     
     const collection = connection.db('people').collection('projects');
     req.body.likes=0;
@@ -148,7 +148,7 @@ app.post('/add-project', (req, res, next) => {
 );
     
 
-app.post('/project-exist-checker', bodyParser.json(), (req, res) => {
+app.post('/project-exist-checker', express.json(), (req, res) => {
     const collection = connection.db('people').collection('projects');
     collection.find({email:req.body.email}).toArray((err, docs)=>{
         var flg=0;
@@ -167,7 +167,7 @@ app.post('/project-exist-checker', bodyParser.json(), (req, res) => {
     })
 });
 
-app.post('/get-project', bodyParser.json(), (req, res)=>{
+app.post('/get-project', express.json(), (req, res)=>{
     const collection = connection.db('people').collection('projects');
     // console.log(req.body.email)
     // console.log(req.body.projname);
@@ -195,7 +195,7 @@ app.post('/get-project', bodyParser.json(), (req, res)=>{
     })
 })
 
-app.post('/if-liked', bodyParser.json(), (req, res)=>{
+app.post('/if-liked', express.json(), (req, res)=>{
     const collection = connection.db('people').collection('liked');
     // console.log(req.body);
     collection.find({email:req.body.email}).toArray((err, docs)=>{
@@ -221,7 +221,7 @@ app.post('/if-liked', bodyParser.json(), (req, res)=>{
     })
 });
 
-app.post('/like-proj', bodyParser.json(), (req, res)=>{
+app.post('/like-proj', express.json(), (req, res)=>{
     
     const collection = connection.db('people').collection('liked');
     collection.find({email:req.body.email}).toArray((err, docs)=>{
@@ -276,7 +276,7 @@ app.post('/like-proj', bodyParser.json(), (req, res)=>{
     
 })
 
-app.post('/get-comment', bodyParser.json(), (req, res)=>{
+app.post('/get-comment', express.json(), (req, res)=>{
     // console.log(req.body);
     const collection = connection.db('people').collection('projects');
     collection.find({email:req.body.email, projname:req.body.projname}).toArray((err, docs)=>{
@@ -292,7 +292,7 @@ app.post('/get-comment', bodyParser.json(), (req, res)=>{
     })
 })
 
-app.post('/get-image', bodyParser.json(), (req, res)=>{
+app.post('/get-image', express.json(), (req, res)=>{
     // console.log(req.body)
     var imageBytes = fs.readFileSync(`./projimages/proj-${req.body.email}-${req.body.projname}-${req.body.no-1}.jpg`);
     // ame + "-" + req.body.email + "-" + req.body.projname + "-" +String(req.cnt++) +".jpg"
@@ -300,7 +300,7 @@ app.post('/get-image', bodyParser.json(), (req, res)=>{
     res.send({data:imageBytes})
 })
 
-app.post('/get-projects',bodyParser.json(), (req, res)=>{
+app.post('/get-projects',express.json(), (req, res)=>{
     const collection = connection.db('people').collection('projects');
     var tobesent=[];
     if (req.body.search=='false') {
@@ -460,7 +460,7 @@ function sendMail(from, appPassword, to, subject,  htmlmsg)
     });
 }
 
-app.post('/change-password', bodyParser.json(), (req, res)=>{
+app.post('/change-password', express.json(), (req, res)=>{
     // console.log(1);
     const collection = connection.db('people').collection('details');
     collection.find({email:req.body.email}).toArray((err, docs)=>{
@@ -486,7 +486,7 @@ app.post('/change-password', bodyParser.json(), (req, res)=>{
     })
 })
 
-app.post('/get-new-password', bodyParser.json(), (req, res)=>{
+app.post('/get-new-password', express.json(), (req, res)=>{
     const collection = connection.db('people').collection('changepassword');
     collection.find({email:req.body.email, passString: req.body.passString}).toArray((err, docs)=>{
         // console.log(req.body);
@@ -508,7 +508,7 @@ app.post('/get-new-password', bodyParser.json(), (req, res)=>{
     })
 })
 
-app.post('/search-projects', bodyParser.json(), (req, res)=>{
+app.post('/search-projects', express.json(), (req, res)=>{
     const collection = connection.db('people').collection('projects');
     console.log(1);
     // collection.toArray((err, docs)=>{
@@ -518,7 +518,7 @@ app.post('/search-projects', bodyParser.json(), (req, res)=>{
     // console.log(collection);
 })
 
-app.post('/download-zip', bodyParser.json(), (req, res)=>{
+app.post('/download-zip', express.json(), (req, res)=>{
     const collection = connection.db('people').collection('details');
     collection.find({accessString:req.body.accessString}).toArray((err, docs)=>{
         if (docs.length>0) {
@@ -531,7 +531,7 @@ app.post('/download-zip', bodyParser.json(), (req, res)=>{
     })
 })
 
-app.post('/delete-project', bodyParser.json(), (req, res)=>{
+app.post('/delete-project', express.json(), (req, res)=>{
     const collection = connection.db('people').collection('details');
     collection.find({email: req.body.email,accessString:req.body.accessString}).toArray((err, docs)=>{
         if (docs.length>0) {

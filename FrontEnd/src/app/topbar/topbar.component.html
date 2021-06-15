@@ -1,31 +1,31 @@
-<div style="display: flex; justify-content: space-evenly; height: 50px;
-align-content: space-around; background-color: black;border-radius: 5px;width: 80%; margin:auto;  padding: 15px; margin-top:5px ;">
-    <a href="/" style="text-decoration: none;">
-        <p style="margin-left: 50px; color: white; font-family:cursive; font-size: 20px; cursor: pointer; margin-top: 10px;">projectchaapo</p>
-    </a>
+<div id="menu">
 
-    <button routerLink="/uploadpage" class="button" style=" margin: auto; cursor: pointer;">Upload your project!</button>
-    <div id="api" style="font-family: 'Times New Roman', Times, serif; margin-right: 50px;font-size: 10px; background-color: red; padding: 2px;width: 87px; height: 50px;color: white; border-radius: 2px;">
-    
-    </div>
-    <div id="signinsignup" style="display: none; float: right; cursor: pointer; color: white; margin-top: 2px; margin-right: 20px;">
-        <div routerLink="/signup">
-            Sign Up
-        </div>
-        <div style="height: 10px;"></div>
-        <div routerLink="/signin">
-            Sign In
-        </div>
-    </div>
-    <div id="profilepicturelogoutbutton" style="display: none; float: right; margin-right: 20px;">
-        <div style="display: inline-block;">
-            <a href="/profilepage?user={{email}}">
-                <img style="width:50px; height: 50px;" src="https://robohash.org/{{name}}" alt="pic"/><br>
+    <ul>
+        <li>
+            <a href="/">
+                My Project Hub
             </a>
-        </div>
-        
-    </div>
+        </li>
 
+        <li>
+            <div routerLink="/uploadpage">Upload project</div>
+        </li>
+
+        <li>
+            
+
+            <a href="/signup">Sign Up</a>
+        </li>
+        <li>
+            <a href="/signin">Sign In</a>
+
+        </li>
+        <li>
+            <a href="/profilepage?user={{email}}">
+                <img style="width:50px; height: 50px;" src="https://robohash.org/{{name}}" alt="pic" />
+            </a>
+        </li>
+    </ul>
 </div>
-<div style="height: 15px;"></div>
 
+<div style="height: 15px;"></div>

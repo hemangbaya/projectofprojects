@@ -57,7 +57,6 @@ export class SigninComponent implements OnInit {
 
     signInAction() {
       document.getElementById('emailpasswordsuggestion').innerHTML = "";
-      if (this.emailofuser != null || this.passwordofuser != null) {
         this.ds.signIn({email:this.emailofuser.toLowerCase(), password:this.passwordofuser})
         .subscribe((response)=>{
           if(response.status=="ok") {
@@ -74,10 +73,6 @@ export class SigninComponent implements OnInit {
             document.getElementById('emailpasswordsuggestion').innerHTML = "Email/password not valid";
           }
         })
-      }
-      else {
-        document.getElementById('emailpasswordsuggestion').innerHTML = "Email/password not valid";
-      }
     }
 
     changepassword(){

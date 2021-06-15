@@ -1,3 +1,70 @@
 .button{
-    background-color: lightgrey;border-radius: 10px; padding: 5px; cursor: pointer;
+    background-color: white;
+    border-radius: 5px; 
+    padding: 3px; 
+    cursor: pointer;
 }
+#menu {
+    margin: 0;
+    width: auto;
+    background-color: #A4CFED;
+    font-size: 16px;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px;
+}
+
+#menu ul {
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    height: auto;
+}
+
+#menu li {
+    display: inline;
+    padding: 8px;
+}
+
+#menu a {
+    color: #FFF;
+    display: inline;
+    padding: 10px;
+    text-decoration: none;
+}
+
+#menu div {
+    color: #FFF;
+    display: inline;
+    padding: 10px;
+    text-decoration: none;
+}
+
+#menu a:hover {
+    background-color: #1B191B;
+    color: #FFF;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+#menu div:hover {
+    background-color: #1B191B;
+    color: #FFF;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+#menu li .active {
+    background-color: #1B191B;
+    color: #FFF;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
