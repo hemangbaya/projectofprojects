@@ -2,16 +2,16 @@
 <div style="height: 150px; width: 150px; margin: auto;">
     <img src="" alt=" " id="changingimage" style="height: 150px;width: 150px;"/>
     </div>
-<div style="margin: auto; border: solid black 1px;width: 500px;border-radius: 25px; text-align: center;padding: 30px;background-color: lightgray;">
+<div style="margin: auto; border: solid black 1px;width: 250px;text-align: center;padding: 20px; border-radius: 2px;background-color: #F7A994;">
     <form #f="ngForm">
         <br>
-        Name: <input type="text" name="inputName"  [(ngModel)]="nameofuser" (change)="profpic($event)"> <br><div id="namesuggestion" ></div>
+        Name: <input type="text" name="inputName"  [(ngModel)]="nameofuser" (change)="profpic($event)" style="border-radius: 10px; width: 200px; border: solid black 0px; outline: none; padding: 3px;"> <br><div id="namesuggestion" ></div>
         <br>
-        Email: <input type="text" name="inputEmail" [(ngModel)]="emailofuser"> <br><div id="emailsuggestion"></div>
+        Email: <input type="text" name="inputEmail" [(ngModel)]="emailofuser" style="border-radius: 10px; width: 200px; border: solid black 0px; outline: none; padding: 3px;"> <br><div id="emailsuggestion" ></div>
         <br>
-        Password: <input type="password" name="inputPassword" [(ngModel)]="passwordofuser"> <br><div id="passwordsuggestion"></div>
+        Password: <input type="password" name="inputPassword" [(ngModel)]="passwordofuser" style="border-radius: 10px; width: 200px; border: solid black 0px; outline: none; padding: 3px;"> <br><div id="passwordsuggestion"></div>
         <br>
-        Confirm Password: <input type="password" name="inputPassword" [(ngModel)]="passwordofuserconf"><br><div id="confpasswordsuggestion"></div>
+        Confirm Pass: <input type="password" name="inputPassword" [(ngModel)]="passwordofuserconf" style="border-radius: 10px; width: 200px; border: solid black 0px; outline: none; padding: 3px;"><br><div id="confpasswordsuggestion"></div>
         <br>
         <button (click) = "signUpAction()" style="background-color: white;border-radius: 10px; padding: 5px; cursor: pointer;">Sign Up!</button>
         <div id="alreadyexists" style="color: blue;"></div>

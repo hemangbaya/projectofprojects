@@ -1,18 +1,18 @@
 <app-topbar></app-topbar>
-<div style="padding: 25px; width: 700px; border-radius: 25px; border: 1px solid black; background-color: lightgray;margin: auto;text-align: center;">
+<div style="margin: auto; border: solid black 1px;width: 70%;text-align: center;padding: 20px; border-radius: 2px;background-color: #F7A994;">
     <form #f="ngForm">
-        Project Name: (use '_' instead of space)<input type="text" name="pn" [(ngModel)]="projname" style="width: 200px;height: 30px;border-radius: 2px;"/>
+        Project Name: (use '_' instead of space)<br><input type="text" name="pn" [(ngModel)]="projname" style="width: 40%;height: 30px; border-radius: 10px; border: solid black 0px; outline: none; padding: 3px;"/>
        <div id="projnamesug" style="color: red;"></div>
        <div style="display: none;color: blue;" id="projectexists">Project with this name already exists in your account</div><br><br>
     
-       Description: <br><textarea id="projectdescription" style="height: 100px;width: 500px;border-radius: 2px;"></textarea>
+       Description: <br><textarea id="projectdescription" style="height: 100px;width: 60%;border-radius: 10px; border: solid black 0px; outline: none; padding: 3px;"></textarea>
        <div id="projdescriptionsug" style="color: red;"></div><br><br>
     
-       How to Setup: <br><textarea id="projecthowtosetup" style="height: 100px;width: 500px;border-radius: 2px;"></textarea>
+       How to Setup: <br><textarea id="projecthowtosetup" style="height: 100px;width: 60%; border-radius: 10px; border: solid black 0px; outline: none; padding: 3px;"></textarea>
        <div id="projhowtosetupsug" style="color: red;"></div><br><br>
     
        Tags(Comma seperated keywords to get discovered): <br>
-       <textarea id="projecttags" style="height: 100px;width: 500px;border-radius: 2px;"></textarea>
+       <textarea id="projecttags" style="height: 100px;width: 60%; border-radius: 10px; border: solid black 0px; outline: none; padding: 3px;"></textarea>
        <div id="projtagssug" style="color: red;"></div><br><br>
     
        Select 5 images of your project: 

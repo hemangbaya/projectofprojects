@@ -52,15 +52,15 @@ export class HomeComponent implements OnInit {
                   this.content+=`
                   <a href="/projectpage?user=${this.projs[i].email}&projname=${this.projs[i].projname}" style="text-decoration:none;">`
                   this.content+=`
-                  <div style="text-align:center; height:250px;width:250px; border-radius: 25px;margin-top: 15px;" >
+                  <div style="text-align:center; height:250px;width:250px; border-radius: 5px;margin-top: 15px;" >
                   
-                  <div style= "transition:0.1s;font-size:15px;padding:20px;overflow: hidden;height:160px;color:white; width:210px;border-top-left-radius:25px; 
-                  border-top-right-radius:25px;
+                  <div style= "transition:0.1s;font-size:15px;padding:20px;overflow: hidden;height:160px;color:white; width:210px;border-top-left-radius:5px; 
+                  border-top-right-radius:5px;
                    position:relative;word-wrap: break-word;text-align:center;opacity:0;" 
                   onMouseOver="this.style.backgroundColor='#000000'; this.style.opacity=0.8;" onMouseLeave="this.style.opacity=0">
                  
                   ${this.projs[i].projdescription}</div>
-                  <div style="font-size:20px;border-bottom-left-radius:25px;border-bottom-right-radius:25px;color:white;padding:5px;overflow: hidden; background-color:#000000; opacity:0.9; height:40px;">
+                  <div style="font-size:20px;border-bottom-left-radius:5px;border-bottom-right-radius:5px;color:white;padding:5px;overflow: hidden; background-color:#000000; opacity:0.9; height:40px;">
                   <div>${this.projs[i].projname.slice(0,23)+'...'}</div>
                   <div style="font-size:15px; color:red;">${this.projs[i].likes} <span style="color:white;">likes</span></div>
                   </div>
@@ -202,7 +202,7 @@ export class HomeComponent implements OnInit {
               }
               for(var w=0; w<fillerdiv;w++) {
                 // alert(1)
-                this.content+=`<div style="height:250px;width:250px; border-radius: 25px;margin-top: 15px; ">
+                this.content+=`<div style="height:250px;width:250px; border-radius: 5px;margin-top: 15px; ">
                 </div>`
               } 
               this.content+='</div>';
